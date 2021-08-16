@@ -1,6 +1,8 @@
 package com.up42.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.up42.service.InstantDeSerializer;
 import com.up42.service.InstantSerializer;
 import lombok.Data;
 
@@ -13,12 +15,15 @@ public class Feature {
     private UUID id;
 
     @JsonSerialize(using = InstantSerializer.class)
+    @JsonDeserialize(using = InstantDeSerializer.class)
     private Instant timestamp;
 
     @JsonSerialize(using = InstantSerializer.class)
+    @JsonDeserialize(using = InstantDeSerializer.class)
     private Instant beginViewingDate;
 
     @JsonSerialize(using = InstantSerializer.class)
+    @JsonDeserialize(using = InstantDeSerializer.class)
     private Instant endViewingDate;
 
     private String missionName;

@@ -10,6 +10,6 @@ import java.time.Instant;
 public class InstantSerializer extends JsonSerializer<Instant> {
     @Override
     public void serialize(Instant value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeString(String.valueOf(value.getEpochSecond()));
+        gen.writeNumber(value.toEpochMilli());
     }
 }
