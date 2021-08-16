@@ -1,0 +1,26 @@
+[
+  {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "39c2f29e-c0f8-4a39-a98b-deed547d6aea",
+          "quicklook": "iVBORw0"
+        }
+      }
+    ]
+  },
+  {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "cf5dbe37-ab95-4af1-97ad-2637aec4ddf0",
+          "quicklook": "iVBORw0KGgoAAAANSUh"
+        }
+      }
+    ]
+  }
+]
