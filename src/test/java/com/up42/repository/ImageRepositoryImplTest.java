@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 class ImageRepositoryImplTest {
 
-    private ImageRepositoryImpl imageRepository = new ImageRepositoryImpl();
+    private final ImageRepositoryImpl imageRepository = new ImageRepositoryImpl();
 
     @BeforeEach
     public void setup() throws IOException {

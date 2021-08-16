@@ -18,14 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 class FeatureRepositoryImplTest {
 
-    private FeatureRepositoryImpl featureRepository = new FeatureRepositoryImpl();
+    private final FeatureRepositoryImpl featureRepository = new FeatureRepositoryImpl();
 
-    private Feature feature1 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-1");
+    private Feature feature1;
 
-    private Feature feature2 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-2");
+    private Feature feature2;
 
     @BeforeEach
     public void setup() {
+        feature1 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-1");
+        feature2 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-2");
         featureRepository.save(feature1);
         featureRepository.save(feature2);
     }

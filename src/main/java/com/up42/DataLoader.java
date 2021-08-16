@@ -38,12 +38,25 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("I M Running");
-
         String json = StreamUtils.copyToString(
                 new ClassPathResource("source-data.json").getInputStream(), defaultCharset());
+        Configuration.setDefaults(getConfiguration());
+        Configuration conf = Configuration.defaultConfiguration();
+        TypeRef<List<Properties>> typeRef = new TypeRef<List<Properties>>() {
+        };
+        DocumentContext context = JsonPath
+                .using(conf)
+                .parse(json);
+        imageRepository.saveContext(context);
+        context
+                .read("$..properties", typeRef)
+                .stream()
+                .map(PropertiesMapper.INSTANCE::convert)
+                .forEach(featureRepository::save);
+    }
 
-        Configuration.setDefaults(new Configuration.Defaults() {
+    private Configuration.Defaults getConfiguration() {
+        return new Configuration.Defaults() {
 
             private final JsonProvider jsonProvider = new JacksonJsonProvider();
             private final MappingProvider mappingProvider = new JacksonMappingProvider();
@@ -62,20 +75,6 @@ public class DataLoader implements CommandLineRunner {
             public Set<Option> options() {
                 return EnumSet.noneOf(Option.class);
             }
-        });
-        Configuration conf = Configuration.defaultConfiguration();
-        TypeRef<List<Properties>> typeRef = new TypeRef<List<Properties>>() {
         };
-        DocumentContext context = JsonPath
-                .using(conf)
-                .parse(json);
-        imageRepository.saveContext(context);
-        context
-                .read("$..properties", typeRef)
-                .stream()
-                .map(PropertiesMapper.INSTANCE::convert)
-                .forEach(featureRepository::save);
-        featureRepository.findAll().forEach(System.out::println);
-        System.out.println(imageRepository.findById("39c2f29e-c0f8-4a39-a98b-deed547d6ae"));
     }
 }

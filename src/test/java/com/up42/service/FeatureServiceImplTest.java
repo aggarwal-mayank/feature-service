@@ -44,12 +44,14 @@ public class FeatureServiceImplTest {
 
     private String imageString;
 
-    private Feature feature1 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-1");
+    private Feature feature1;
 
-    private Feature feature2 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-2");
+    private Feature feature2;
 
     @BeforeEach
     public void setup() throws IOException {
+        feature1 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-1");
+        feature2 = new Feature(UUID.randomUUID(), Instant.now(), Instant.now(), Instant.now(), "mission-2");
         features = new ArrayList<>();
         features.add(feature1);
         features.add(feature2);
