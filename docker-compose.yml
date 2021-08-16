@@ -1,0 +1,11 @@
+---
+version: "3.4"
+
+services:
+  feature:
+    build:
+      context: .
+      target: feature
+    ports:
+      - "8080:8080"
+
